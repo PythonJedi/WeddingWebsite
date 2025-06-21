@@ -1,0 +1,8 @@
+<div id="tabview" class="tabview">
+    <iframe hidden name="#tabview" onload="window.htmz(this)"></iframe>
+  {% for id, tab in tabs.items() %}
+    <a class="{{"current-tab" if tab.id==selected else "tab"}}"
+       href="/htmz/tab/{{ id }}"
+       target="#tabview">{{ tab.name }}</a>
+  {% endfor %}
+    <div class="content"> {{ tabs[selected].obj.render()|safe }} </div></div>

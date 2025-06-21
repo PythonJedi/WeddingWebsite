@@ -1,0 +1,7 @@
+<form>
+<legend>RSVP for our wedding</legend>
+<label for="name">Your Name</label><input name="name"/>
+<label for="email">Email Address</label><input type="email" name="email"/>
+<label for="is_attending">Will you be attending?</label><span class="shrink"><input type=checkbox name="is_attending" default=checked/></span>
+<label class=only-if-attending for="attendee_count">How many will be attending with you?</label><input class=only-if-attending type="number" name="attendee_count"/>
+<button action="submit">Send RSVP</button></form>

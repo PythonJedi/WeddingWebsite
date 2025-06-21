@@ -1,0 +1,25 @@
+<div id=gallery style="width=100%">
+    <iframe hidden name="#gallery" onload="window.htmz(this)"></iframe>
+
+    <div style="height:50vh;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;">
+        <a href=/htmz/gallery/{{current.prev()}} target="#gallery"
+           class="iter">&#x3008;&nbsp;</a>
+        <img style="max-width: 75%; max-height: 100%; margin-left: auto; margin-right: auto;" src={{current.path()}}></img>
+        <a href=/htmz/gallery/{{current.next()}} target="#gallery"
+           class="iter">&nbsp;&#x3009;</a> </div>
+
+    <div style="display: flex; justify-content: center; width: 100%">
+      {% for i in indices %}
+          {% if i == current.index %}
+            <span style="margin: calc(1em - 4px); padding: 2px; border: 2px solid var(--base01); border-radius: 2px; background-color: var(--base2);">{{i+1}}</span>
+          {% else %}
+            <a style="margin: 1em" href=/htmz/gallery/{{i}} target="#gallery">{{i+1}}</a>
+          {% endif %}
+      {% endfor %}
+    </div>
+</div>
+
