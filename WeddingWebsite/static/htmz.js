@@ -1,11 +1,5 @@
 function htmz(frame) {
     setTimeout(() => {
-        // 
-        if (frame.className == "") {
-            frame.className = "loaded";
-            return;
-        }
-
         // Error handling
         // hacky way to get the frame's current status code
         const status =
@@ -17,9 +11,9 @@ function htmz(frame) {
           return;
         }
 
-        // replace item in main body with id matching the name of the iframe
+        // replace item in main body with id matching the query fragment
         document
-            .querySelector(frame.name)
-            ?.replaceWith(...frame.contentDocument.body.childNodes);
+            .querySelector(frame.contentWindow.location.hash || null)
+            ?.replaceWith(...frame.contentDocument.body.childNodes)
     });
 }

@@ -1,4 +1,6 @@
-from flask import Flask, make_response, render_template
+from datetime import datetime as time_point
+from datetime import timedelta as duration
+from flask import Flask, make_response, render_template, url_for
 from markupsafe import escape
 
 app = Flask(__name__)
@@ -10,6 +12,13 @@ class Story:
     def render(self):
         return render_template('story.html')
 
+class Registry:
+    def __init__(self):
+        pass
+
+    def render(self):
+        return render_template('registry.html')
+
 class Rsvp:
     def __init__(self):
         pass
@@ -17,19 +26,12 @@ class Rsvp:
     def render(self):
         return render_template('rsvp.html')
 
-class Registry:
-    def __init__(self):
-        pass
-
-    def render(self):
-        return """<p>We're working on getting registered at the moment.</p>"""
-
 class Gallery:
     photos = ["American Gothic",
               "Ring",
               "Forehead Kisses",
               "Bench",
-              "Eskimo Kisses",
+              "Noses",
               "Disney Stare",
               "Bridge"]
 
@@ -68,7 +70,6 @@ story = Tab("story", "Our Story", Story())
 rsvp = Tab("rsvp", "RSVP", Rsvp())
 registry = Tab("registry", "Registry", Registry())
 gallery = Tab("gallery", "Gallery", Gallery())
-Tab.default = story.id
 
 @app.route("/htmz/tab/<string:id>")
 def tab_view(id):
@@ -81,7 +82,22 @@ def gallery_view(index):
     assert(index in range(len(g.photos)))
     return g.render()
 
+@app.route("/story.html")
+def story_wrap():
+    return render_template('index.html', content=story)
+
+@app.route("/rsvp.html")
+def rsvp_wrap():
+    return render_template('index.html', content=rsvp)
+
+@app.route("/registry.html")
+def registry_wrap():
+    return render_template('index.html', content=registry)
+
+@app.route("/gallery.html")
+def gallery_wrap():
+    return render_template('index.html', content=gallery)
 
 @app.route("/index.html")
 def index():
-    return render_template('index.html', Tab=Tab)
+    return render_template('index.html', content=story)

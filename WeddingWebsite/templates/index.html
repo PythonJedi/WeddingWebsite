@@ -42,6 +42,8 @@
                     bottom: 0;
                     left: 0;"/></div>
 
+      <iframe name="htmz" hidden onload="window.htmz(this)"></iframe>
+
         <div style="position: relative; top: 0; z-index: -2">
             <h1 class="centered">
                 Timothy Hewitt<br>
@@ -50,7 +52,7 @@
 
             <p class="centered" style="z-index: -2">
                 September 27th, 2025 A.D.</p></div>
-        {{Tab.tabs[Tab.default].render()|safe}}
+        {{content.render()|safe}}
     </body>
 </html>
 
