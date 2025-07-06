@@ -48,7 +48,7 @@ class Gallery:
         return self.photos[self.index]
 
     def path(self):
-        return f"/static/{self.name().replace(" ", '')}.jpg"
+        return f"/static/{self.name().replace(' ', '')}.jpg"
 
     def render(self):
         return render_template('gallery.html', current=self, indices=range(len(self.photos)))
