@@ -1,9 +1,14 @@
-from datetime import datetime as time_point
-from datetime import timedelta as duration
 from flask import Flask, make_response, render_template, url_for
 from markupsafe import escape
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 app = Flask(__name__)
+
+import sys
+if "--debug" not in sys.argv:
+    app.wsgi_app = ProxyFix(
+        app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1
+    )
 
 class Story:
     def __init__(self):
