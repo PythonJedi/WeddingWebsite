@@ -102,7 +102,3 @@ def registry_wrap():
 @app.route("/gallery.html")
 def gallery_wrap():
     return render_template('index.html', content=gallery)
-
-@app.route("/index.html")
-def index():
-    return render_template('index.html', content=story)
